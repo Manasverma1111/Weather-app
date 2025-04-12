@@ -1,0 +1,205 @@
+/* Base styles and CSS variables */
+:root {
+  --primary-color: #4a90e2;
+  --primary-dark: #3a7bc8;
+  --text-color: #333;
+  --text-light: #666;
+  --bg-color: #f5f7fa;
+  --bg-card: #ffffff;
+  --border-color: #f0f0f0;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --border-radius: 8px;
+  --transition: 0.3s ease;
+  --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Dark mode variables */
+.dark-mode {
+  --primary-color: #5a9be2;
+  --primary-dark: #4a90e2;
+  --text-color: #ecf0f1;
+  --text-light: #bdc3c7;
+  --bg-color: #1a202c;
+  --bg-card: #2c3e50;
+  --border-color: #3d4c5c;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  line-height: 1.6;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  flex: 1;
+}
+
+/* Header styles */
+.app-header {
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+}
+
+.units-toggle {
+  background-color: var(--bg-card);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-right: var(--spacing-md);
+  font-size: 1rem;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.units-toggle:hover {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Welcome message */
+.welcome-message {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-top: var(--spacing-lg);
+}
+
+.welcome-message h2 {
+  margin-bottom: var(--spacing-md);
+  color: var(--primary-color);
+}
+
+.welcome-message p {
+  color: var(--text-light);
+}
+
+/* Footer styles */
+.app-footer {
+  text-align: center;
+  padding: var(--spacing-md) 0;
+  margin-top: var(--spacing-lg);
+  color: var(--text-light);
+  font-size: 0.85rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-md);
+  }
+  
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .header-controls {
+    margin-top: var(--spacing-md);
+  }
+  
+  .weather-main {
+    flex-direction: column;
+  }
+  
+  .weather-icon {
+    margin-top: var(--spacing-md);
+  }
+  
+  .forecast-cards {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: var(--spacing-md);
+  }
+  
+  .forecast-day-card {
+    min-width: 100px;
+  }
+}
+
+
+
+
+
+
+
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */

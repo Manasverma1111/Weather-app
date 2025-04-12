@@ -1,0 +1,32 @@
+.error-container {
+    background-color: #ffebee;
+    border-left: 4px solid #f44336;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .error-icon {
+    margin-right: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .error-message {
+    color: #d32f2f;
+    font-size: 1rem;
+  }
+  
+  /* Dark mode styles */
+  .dark-mode .error-container {
+    background-color: #3d2427;
+    border-left-color: #e57373;
+  }
+  
+  .dark-mode .error-message {
+    color: #ef9a9a;
+  }
