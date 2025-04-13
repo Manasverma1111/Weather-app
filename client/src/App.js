@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 // Components
@@ -23,40 +23,7 @@ function App() {
 
   const backendURL = process.env.REACT_APP_BACKEND_URL;
 
-  useEffect(() => {
-    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-    setDarkMode(savedDarkMode);
-
-    const lastCity = localStorage.getItem('lastCity');
-    if (lastCity) {
-      setCity(lastCity);
-      fetchWeather(lastCity);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
-  }, [darkMode]);
-
-  const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    localStorage.setItem('darkMode', newDarkMode);
-  };
-
-  const toggleUnits = () => {
-    const newUnits = units === 'metric' ? 'imperial' : 'metric';
-    setUnits(newUnits);
-    if (city) {
-      fetchWeather(city, newUnits);
-    }
-  };
-
-  const fetchWeather = async (cityName, selectedUnits = units) => {
+  const fetchWeather = useCallback(async (cityName, selectedUnits = units) => {
     setLoading(true);
     setError('');
 
@@ -85,6 +52,39 @@ function App() {
     } finally {
       setLoading(false);
     }
+  }, [backendURL, units]);
+
+  useEffect(() => {
+    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(savedDarkMode);
+
+    const lastCity = localStorage.getItem('lastCity');
+    if (lastCity) {
+      setCity(lastCity);
+      fetchWeather(lastCity);
+    }
+  }, [fetchWeather]);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem('darkMode', newDarkMode);
+  };
+
+  const toggleUnits = () => {
+    const newUnits = units === 'metric' ? 'imperial' : 'metric';
+    setUnits(newUnits);
+    if (city) {
+      fetchWeather(city, newUnits);
+    }
   };
 
   const handleSearch = (cityName) => {
@@ -98,10 +98,7 @@ function App() {
         <header className="app-header">
           <h1>Weather Dashboard</h1>
           <div className="header-controls">
-            <button 
-              onClick={toggleUnits} 
-              className="units-toggle"
-            >
+            <button onClick={toggleUnits} className="units-toggle">
               {units === 'metric' ? '°C' : '°F'}
             </button>
             <ThemeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
@@ -131,10 +128,7 @@ function App() {
         </main>
 
         <footer className="app-footer">
-          <p>
-            Powered by OpenWeatherMap API | 
-            Created with React and Node.js
-          </p>
+          <p>Powered by OpenWeatherMap API | Created with React and Node.js</p>
         </footer>
       </div>
     </div>
